@@ -44,7 +44,7 @@ const TOPIC_ROWS = [
 function TopicCard({ label, color, done, lock }) {
   return (
     <div
-      className="relative flex flex-col gap-1 px-3 py-2 rounded-xl bg-white border border-surface-200 shadow-sm select-none"
+      className="relative flex flex-col gap-1 px-3 py-2 rounded-xl bg-white dark:bg-[#2d2f31] border border-[#e5e7eb] dark:border-[#3e4143] shadow-sm select-none transition-colors duration-300"
       style={{
         filter: lock ? "blur(3px)" : "none",
         opacity: lock ? 0.55 : 1,
@@ -68,7 +68,8 @@ function TopicCard({ label, color, done, lock }) {
 export default function PersonalizedSection() {
   return (
     <section
-      className="py-24 px-6 overflow-hidden bg-gradient-to-b from-white via-surface-50 to-purple-50/40 dark:from-surface-900 dark:via-surface-900 dark:to-surface-900"
+      className="py-24 px-6 overflow-hidden bg-gradient-to-b from-white via-[#eef2ff] to-[#faf5ff] dark:bg-none dark:bg-[#1c1d1f] transition-colors duration-300"
+      style={{ fontFamily: "'Inter', 'Source Sans 3', sans-serif" }}
     >
       <div className="max-w-[1100px] mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
         {/* ── LEFT: text ── */}

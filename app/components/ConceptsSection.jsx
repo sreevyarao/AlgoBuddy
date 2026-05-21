@@ -9,16 +9,14 @@ const CONCEPTS = [
     body: "Step-by-step interactive visualizations make even complex algorithms feel intuitive. See exactly what's happening at every step.",
     cta: { label: "Try Sorting", href: "/visualizer" },
     visual: <SortingVisual />,
-    bg: "#f0fdf4",
-    darkBg: "#0d1f14",
+   bgClass: "bg-[#f0fdf4] dark:bg-[#0d1f14]",
   },
   {
     heading: "Code that\nmakes sense",
     body: "Watch the algorithm execute line by line alongside the visualization. Learn how code maps to real behaviour.",
     cta: { label: "Try Searching", href: "/visualizer" },
     visual: <SearchVisual />,
-    bg: "#faf5ff",
-    darkBg: "#160d22",
+   bgClass: "bg-[#f0fdf4] dark:bg-[#0d1f14]",
     flip: true,
   },
   {
@@ -26,8 +24,7 @@ const CONCEPTS = [
     body: "Manipulate data structures directly — push, pop, enqueue, dequeue — and see the state update in real time.",
     cta: { label: "Try Stack & Queue", href: "/visualizer" },
     visual: <StackVisual />,
-    bg: "#eff6ff",
-    darkBg: "#0d1627",
+    bgClass: "bg-[#f0fdf4] dark:bg-[#0d1f14]",
   },
 ];
 
@@ -252,11 +249,10 @@ export default function ConceptsSection() {
     <section
       className="bg-white dark:bg-surface-900"
     >
-      {CONCEPTS.map((c, idx) => (
+     {CONCEPTS.map((c, idx) => (
         <div
           key={idx}
-          style={{ background: c.bg }}
-          className="dark:bg-opacity-0 py-20 px-6"
+          className={`${c.bgClass} transition-colors duration-300 py-20 px-6`}
         >
           <div
             className={`max-w-[1100px] mx-auto flex flex-col ${
@@ -290,8 +286,8 @@ export default function ConceptsSection() {
         </div>
       ))}
 
-      {/* ── "More effective, more fun" block ── */}
-      <div className="py-20 px-6 bg-green-50">
+     {/* ── "More effective, more fun" block ── */}
+      <div className="py-20 px-6 bg-[#f0fdf4] dark:bg-[#0d1f14] transition-colors duration-300">
         <div className="max-w-[1100px] mx-auto flex flex-col lg:flex-row-reverse items-center gap-16 lg:gap-24">
 
           {/* Text side */}
