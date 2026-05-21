@@ -1,5 +1,5 @@
 "use client";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Search, ChevronRight } from "lucide-react";
@@ -79,8 +79,6 @@ const getTheme = (t) =>
     bg: "#f9fafb",
     border: "#e5e7eb",
   };
-
-// (restored) use theme.bg / theme.border directly; no temporary dark border constants
 
 /* ═══════════════════════════════════════
    Mini Visuals for cards
@@ -222,16 +220,6 @@ const MINI_VIZ = {
    DS Card — homepage-style window card
    ═══════════════════════════════════════ */
 function DSCard({ section, theme, onClick, delay }) {
-  const [isDark, setIsDark] = useState(false);
-  useEffect(() => {
-    if (typeof document === 'undefined') return;
-    const check = () => setIsDark(document.documentElement.classList.contains('dark'));
-    check();
-    const observer = new MutationObserver(check);
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-    return () => observer.disconnect();
-  }, []);
-
   const MiniViz = MINI_VIZ[section.title];
   const count = section.subsections
     ? section.subsections.reduce((a, s) => a + s.items.length, 0)
@@ -329,15 +317,6 @@ function ModuleView({ section, theme, onBack }) {
     ? section.subsections.reduce((a, s) => a + s.items.length, 0)
     : 0;
 
-    const [isDark, setIsDark] = useState(false);
-    useEffect(() => {
-      if (typeof document === 'undefined') return;
-      const check = () => setIsDark(document.documentElement.classList.contains('dark'));
-      check();
-      const observer = new MutationObserver(check);
-      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-      return () => observer.disconnect();
-    }, []);
   return (
     <motion.div
       initial={{ opacity: 0, x: 40 }}
@@ -355,8 +334,7 @@ function ModuleView({ section, theme, onBack }) {
           className="inline-flex items-center gap-2 text-[13px] font-bold text-surface-500 dark:text-surface-400
             hover:text-surface-900 dark:hover:text-surface-100 transition-colors duration-200 mb-5"
         >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Back to all topics</span>
+          <ArrowLeft className="w-4 h-4" /> Back to all topics
         </button>
 
         <div className="flex items-center gap-4 mb-3">
