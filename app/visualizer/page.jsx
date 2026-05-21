@@ -70,6 +70,42 @@ export const metadata = {
 
 const sections = [
   {
+    title: "Custom Code",
+    desc: "Paste code and inspect a safe step-by-step dry run",
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M8 9l-4 3 4 3m8-6l4 3-4 3M14 5l-4 14"
+        />
+      </svg>
+    ),
+    info: {
+      About:
+        "The custom code dry-run visualizer helps learners paste short algorithm snippets and inspect line-by-line execution state without running unsafe code.",
+      Representation: null,
+    },
+    subsections: [
+      {
+        title: "Dry Run",
+        items: [
+          {
+            name: "User Code Dry Run Visualizer",
+            path: "/visualizer/dry-run",
+          },
+        ],
+      },
+    ],
+  },
+  {
     title: "Array",
     desc: "Searching & sorting algorithms on contiguous memory",
     icon: (
