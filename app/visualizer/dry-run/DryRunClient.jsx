@@ -13,6 +13,7 @@ import {
   Terminal,
 } from "lucide-react";
 import Link from "next/link";
+import Editor from "@monaco-editor/react";
 import { useUser } from "@/app/contexts/UserContext";
 import { useCollaboration } from "@/app/components/ui/useCollaboration";
 
