@@ -633,7 +633,7 @@ export default function VisualizerClient({ initialSections }) {
       
       {/* ═══════ CONTENT AREA ═══════ */}
       <section
-        className="px-5 pt-0 pb-20 min-h-screen bg-gradient-to-b from-white via-surface-50 to-purple-50/40 dark:bg-none dark:bg-[#1c1d1f] transition-colors duration-300"
+        className="px-5 pt-12 pb-20 min-h-screen bg-gradient-to-b from-white via-surface-50 to-purple-50/40 dark:bg-none dark:bg-[#1c1d1f] transition-colors duration-300"
       >
         <div className="max-w-[1100px] mx-auto">
           {/* page heading + search */}
