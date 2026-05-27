@@ -21,6 +21,36 @@ Capabilities & Guidelines:
 7. Keep responses concise and structured. Do not overwhelm the user with walls of text.
 8. If asked about something unrelated to programming, computer science, or DSA, politely redirect the conversation back to algorithms and data structures.`;
 
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+function validateMessages(messages) {
+  if (!messages || !Array.isArray(messages)) {
+    return "Invalid or missing 'messages' array.";
+  }
+  if (messages.length > MAX_MESSAGES_PER_REQUEST) {
+    return `Cannot send more than ${MAX_MESSAGES_PER_REQUEST} messages.`;
+  }
+  for (let i = 0; i < messages.length; i++) {
+    const msg = messages[i];
+    if (!msg || !VALID_ROLES.has(msg.role)) {
+      return `Message at index ${i} has an invalid or missing role.`;
+    }
+    if (typeof msg.content !== "string") {
+      return `Message content at index ${i} must be a string.`;
+    }
+    if (msg.content.length > MAX_PER_MESSAGE_LENGTH) {
+      return `Message at index ${i} exceeds ${MAX_PER_MESSAGE_LENGTH} characters.`;
+    }
+  }
+
+  const totalChars = messages.reduce((sum, message) => sum + message.content.length, 0);
+  if (totalChars > MAX_TOTAL_CHARS) {
+    return `Total message content exceeds ${MAX_TOTAL_CHARS} characters.`;
+  }
+
+  return null;
+}
 function createGeminiContents(messages) {
   return [
     {
@@ -46,6 +76,7 @@ export async function POST(req) {
     const { messages, captchaToken } = body || {};
 
     // Basic payload validation
+        // Basic payload validation
     if (!messages || !Array.isArray(messages)) {
       return Response.json({ error: "Invalid or missing 'messages' array." }, { status: 400 });
     }
@@ -53,25 +84,13 @@ export async function POST(req) {
       return Response.json({ error: `Messages must be between 1 and ${MAX_MESSAGES_PER_REQUEST} items.` }, { status: 400 });
     }
 
-    for (let i = 0; i < messages.length; i++) {
-      const msg = messages[i];
-      if (!msg || !VALID_ROLES.has(msg.role)) {
-        return Response.json({ error: `Invalid role at index ${i}.` }, { status: 400 });
-      }
-      if (typeof msg.content !== "string") {
-        return Response.json({ error: `Message content at index ${i} must be a string.` }, { status: 400 });
-      }
-      if (msg.content.length > MAX_PER_MESSAGE_LENGTH) {
-        return Response.json({ error: `Message at index ${i} exceeds ${MAX_PER_MESSAGE_LENGTH} characters.` }, { status: 400 });
-      }
+    // 3. Validate Messages Payload
+    const validationError = validateMessages(messages);
+    if (validationError) {
+      return Response.json({ error: validationError }, { status: 400 });
     }
 
-    const totalChars = messages.reduce((sum, message) => sum + (message.content?.length || 0), 0);
-    if (totalChars > MAX_TOTAL_CHARS) {
-      return Response.json({ error: `Total message content exceeds ${MAX_TOTAL_CHARS} characters.` }, { status: 400 });
-    }
-
-    // Captcha & IP
+    // Captcha & IP (Required to define the 'ip' variable for rate limiting)
     if (!captchaToken) {
       return Response.json({ error: "Captcha token missing." }, { status: 403 });
     }
