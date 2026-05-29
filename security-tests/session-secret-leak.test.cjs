@@ -147,7 +147,7 @@ test("listCollaborationSessions hides join codes and excludes unlisted sessions"
     visibility: "unlisted",
   });
 
-  const sessions = await listCollaborationSessions();
+  const { sessions } = await listCollaborationSessions();
   const listedPublicSession = sessions.find((session) => session.id === publicSession.id);
 
   assert.ok(listedPublicSession, "public sessions may appear in anonymous listing");
