@@ -155,7 +155,7 @@ const BinarySearch = () => {
         }, delay * 0.6);
       }
     }, delay);
-  }, [isPausedRef, speedRef]);
+  }, [speedRef, isPausedRef]);
 
   const handleGo = (e) => {
     e.preventDefault();
