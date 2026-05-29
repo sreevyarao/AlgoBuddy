@@ -5,7 +5,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { FiChevronRight, FiSearch, FiBookOpen } from "react-icons/fi";
 import { Award, Zap, BookOpen, Layers } from "lucide-react";
-import Navbar from "@/app/components/navbar";
 import Footer from "@/app/components/footer";
 import { practiceData } from "@/lib/practiceData";
 
@@ -342,7 +341,6 @@ export default function PracticeHub() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-[#1c1d1f] text-surface-900 dark:text-white transition-colors duration-300">
-      <Navbar />
 
       {/* Hero Section inspired by Apna College but Purple themed */}
       <section className="relative px-5 pt-12 pb-8 bg-gradient-to-b from-white via-surface-50 to-purple-50/40 dark:bg-none dark:bg-[#1c1d1f] border-b border-surface-100 dark:border-neutral-800">
@@ -594,3 +592,4 @@ export default function PracticeHub() {
     </div>
   );
 }
+

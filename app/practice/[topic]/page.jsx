@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useRouter, useParams } from "next/navigation";
 import { FiChevronLeft, FiExternalLink, FiVideo, FiBookOpen } from "react-icons/fi";
 import { toast } from "react-hot-toast";
-import Navbar from "@/app/components/navbar";
 import Footer from "@/app/components/footer";
 import TheoryDrawer from "@/app/components/practice/TheoryDrawer";
 import { practiceData } from "@/lib/practiceData";
@@ -95,8 +94,7 @@ export default function TopicPracticeSheet() {
   if (!topic) {
     return (
       <div className="min-h-screen flex flex-col justify-between bg-white dark:bg-[#1c1d1f]">
-        <Navbar />
-        <div className="flex-1 flex flex-col items-center justify-center text-center p-8">
+          <div className="flex-1 flex flex-col items-center justify-center text-center p-8">
           <h2 className="text-3xl font-black mb-4">Topic Not Found</h2>
           <p className="text-surface-500 dark:text-surface-400 mb-6">The requested roadmap category does not exist.</p>
           <Link href="/practice" className="px-6 py-3 rounded-full bg-primary text-white font-bold">
@@ -134,7 +132,6 @@ export default function TopicPracticeSheet() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-[#1c1d1f] text-surface-900 dark:text-white transition-colors duration-300">
-      <Navbar />
 
       <main className="max-w-[1100px] mx-auto px-5 py-12">
         {/* Breadcrumb & Navigation */}
@@ -348,3 +345,4 @@ export default function TopicPracticeSheet() {
     </div>
   );
 }
+

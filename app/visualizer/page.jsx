@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "@/app/components/navbar";
 import Footer from "@/app/components/footer";
 import VisualizerClient from "./VisualizerClient";
 import ArrayModal from "@/app/components/models/ArrayModal";
@@ -658,7 +657,6 @@ const Visualizer = () => {
       className="min-h-screen bg-white dark:bg-[#1c1d1f] text-gray-800 dark:text-gray-200 flex flex-col"
       style={{ fontFamily: "'Inter', 'Source Sans 3', sans-serif" }}
     >
-      <Navbar />
       <TutorialOverlay />
       <VisualizerClient initialSections={clientSections} />
       <div className="w-full relative z-10">
@@ -671,3 +669,4 @@ const Visualizer = () => {
 };
 
 export default Visualizer;
+

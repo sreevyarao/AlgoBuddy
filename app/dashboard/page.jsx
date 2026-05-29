@@ -1,5 +1,4 @@
 "use client";
-import Navbar from "@/app/components/navbar";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -62,9 +61,6 @@ export default function Dashboard() {
 
   return (
     <section className="bg-white dark:bg-neutral-900 min-h-screen">
-      <div>
-        <Navbar />
-      </div>
       <main className="max-w-4xl mx-auto px-4 py-24">
         <div className="mb-8">
           <h1 className="text-2xl font-bold text-surface-900 dark:text-white">My Dashboard</h1>
@@ -158,3 +154,4 @@ export default function Dashboard() {
     </section>
   );
 }
+
